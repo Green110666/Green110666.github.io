@@ -157,6 +157,149 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/27/RK%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Green">
+      <meta itemprop="description" content="一位AI专业本科生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Greenland">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/27/RK%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/" class="post-title-link" itemprop="url">RK算法与字符串哈希</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-27 13:56:27 / 修改时间：14:40:05" itemprop="dateCreated datePublished" datetime="2022-12-27T13:56:27+08:00">2022-12-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="RK算法"><a href="#RK算法" class="headerlink" title="RK算法"></a>RK算法</h3><p>RK算法全名Rabin-Karp算法，是由Rabin和Karp提出的字符串匹配算法，该算法的原理是将字符串匹配问题转化为整数比较问题，例如在我们比较’abcbc’与’abc’时，我们可以运用霍纳法则，以3为一个单位，将对应长度的字符串表示为一个十进制整数，当两个整数相等时，说明匹配成功。但实际使用时会产生许多问题，例如随着字符串的长度增加导致整数的大小溢出，同时转化的复杂度也会提升，为此可以采用取模的方法规避这一问题，但实际上取模的副作用就是产生一些错误匹配，也被称为伪命中点，即这些字符串转化为十进制整数后，虽然两个整数大小是不相等的，然而取模之后大小相等，结果就是也被认作是匹配的。</p>
+<h3 id="字符串哈希"><a href="#字符串哈希" class="headerlink" title="字符串哈希"></a>字符串哈希</h3><p>字符串哈希算法与RK算法类似，或者说是RK算法的拓展，也是把字符串映射到整数的方法，而在这个映射函数中我们不一定使用霍纳法则，这个函数也被称作Hash（哈希）函数。</p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><p>具体来说，哈希函数最重要的性质可以概括为下面两条：</p>
+<ol>
+<li>在 Hash 函数值不一样的时候，两个字符串一定不一样；</li>
+<li>在 Hash 函数值一样的时候，两个字符串不一定一样（但有大概率一样，且我们当然希望它们总是一样的）。</li>
+</ol>
+<p>Hash 函数值一样时原字符串却不一样的现象我们称为哈希碰撞。</p>
+<h4 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h4><p>在霍纳法则中我们使用的是以10为基数，但实际上我们可以自由选择这个基数，只要合适。对于取模的数m，我们最好选择素数。通过哈希函数f，我们得到的是一个字符串lenth-1阶的多项式，若文本串t和模式串s在x&#x3D;b的时候哈希碰撞，则b是f的一个根，即当x&#x3D;b时，哈希函数所对应的值是相等的，而为了使哈希函数所得到的值域尽可能大，这与m有关，显然当m是素数的时候是最优的，f的根最多有lenth-1个，而b是从0到m中均匀选取，则最终发生哈希碰撞的概率是(lenth-1)&#x2F;m，借助这个概率也可以帮助我们选择更优的基数与m。</p>
+<h4 id="最简单的实现"><a href="#最简单的实现" class="headerlink" title="最简单的实现"></a>最简单的实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#python</span></span><br><span class="line">M = <span class="built_in">int</span>(<span class="number">1e9</span> + <span class="number">7</span>)</span><br><span class="line">B = <span class="number">233</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_hash</span>(<span class="params">s</span>):</span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> char <span class="keyword">in</span> s:</span><br><span class="line">        res = (res * B + <span class="built_in">ord</span>(char)) % M</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">       ord() function is a library function in Python, it is used to get number value from given character value, it accepts a character and returns an integer i.e. it is used to convert a character to an integer i.e. it is used to get the ASCII value of a given character.</span></span><br><span class="line"><span class="string">       &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cmp</span>(<span class="params">s, t</span>):</span><br><span class="line">    <span class="keyword">return</span> get_hash(s) == get_hash(t)</span><br></pre></td></tr></table></figure>
+
+<p>对于RK算法与字符串哈希而言，在时间复杂度上并不优于自动机与KMP算法之类，但是却给我们提供一种思路：映射。同时，字符串哈希同样可以进行不断的优化和调整，变得更加实用。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/27/%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E7%B2%98%E5%90%88%E5%89%82%EF%BC%9A-%E8%BF%90%E7%AE%97%E7%AC%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Green">
+      <meta itemprop="description" content="一位AI专业本科生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Greenland">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/27/%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E7%B2%98%E5%90%88%E5%89%82%EF%BC%9A-%E8%BF%90%E7%AE%97%E7%AC%A6/" class="post-title-link" itemprop="url">预处理器粘合剂：##运算符</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-27 13:16:46 / 修改时间：13:39:42" itemprop="dateCreated datePublished" datetime="2022-12-27T13:16:46+08:00">2022-12-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在介绍##运算符之前，我们需要先了解一下#运算符，在我们的程序中经常会使用#define语句定义函数宏，例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PSQR(x) printf(<span class="string">&quot;the square of &quot;</span> #x <span class="string">&quot; is %d.\n&quot;</span>,((x)*(x)));</span></span><br></pre></td></tr></table></figure>
+
+<p>在这行代码中#x的作用突显了出来，它可以指代函数宏中的’x’，倘若没有#x，而直接用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PSQR(x) printf(<span class="string">&quot;the square of x is %d.\n&quot;</span>,((x)*(x)));</span></span><br></pre></td></tr></table></figure>
+
+<p>导致的结果就是printf语句中的x表示的是一个字符，而不是参数x的指代。</p>
+<p>与#运算符类似，##运算符可用于函数宏的替换部分，那##运算符为何被称作黏合剂？请参考如下代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> NAME(n) x ## n;</span></span><br></pre></td></tr></table></figure>
+
+<p>在这行代码中，宏NAME(4)将展开为x4。</p>
+<p>在更复杂的代码中，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define PRINT_XN(n) printf(&quot;x&quot; #n &quot; =%d\n&quot;,x ## n);</span><br></pre></td></tr></table></figure>
+
+<p>在这行代码中，通过我们改变n来输出xn与xn的值的对应关系，通过对#和##运算符的运用为我们的代码提供了便利。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/26/test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -292,14 +435,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
