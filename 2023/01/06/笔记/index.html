@@ -20,30 +20,35 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一位AI专业本科生">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Greenland">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="动态库动态库是一种可以在程序运行时被加载的库文件。它是一种封装了一组功能的可执行文件，可以被多个应用程序共享和使用。 动态库的作用是让程序可以在运行时使用它所提供的功能。在编写程序时，可以通过调用动态库中的函数来使用它所提供的功能。动态库会在程序运行时加载到内存中，并为程序提供服务。这样，程序就可以在运行时使用动态库中的函数，而无需将这些函数编译到程序中。 动态库中包含了一组功能的函数，这些函数可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows api笔记">
+<meta property="og:url" content="http://example.com/2023/01/06/%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Greenland">
-<meta property="og:description" content="一位AI专业本科生">
+<meta property="og:description" content="动态库动态库是一种可以在程序运行时被加载的库文件。它是一种封装了一组功能的可执行文件，可以被多个应用程序共享和使用。 动态库的作用是让程序可以在运行时使用它所提供的功能。在编写程序时，可以通过调用动态库中的函数来使用它所提供的功能。动态库会在程序运行时加载到内存中，并为程序提供服务。这样，程序就可以在运行时使用动态库中的函数，而无需将这些函数编译到程序中。 动态库中包含了一组功能的函数，这些函数可">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200414180830485.jpg">
+<meta property="article:published_time" content="2023-01-06T10:52:15.000Z">
+<meta property="article:modified_time" content="2023-01-06T10:53:39.434Z">
 <meta property="article:author" content="Green">
+<meta property="article:tag" content="c&#x2F;c++">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200414180830485.jpg">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2023/01/06/%E7%AC%94%E8%AE%B0/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Greenland</title>
+  <title>windows api笔记 | Greenland</title>
   
 
 
@@ -151,9 +156,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -169,10 +175,9 @@
       <meta itemprop="name" content="Greenland">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/01/06/%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">windows api笔记</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          windows api笔记
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -196,7 +201,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="动态库"><a href="#动态库" class="headerlink" title="动态库"></a>动态库</h3><p>动态库是一种可以在程序运行时被加载的库文件。它是一种封装了一组功能的可执行文件，可以被多个应用程序共享和使用。</p>
+        <h3 id="动态库"><a href="#动态库" class="headerlink" title="动态库"></a>动态库</h3><p>动态库是一种可以在程序运行时被加载的库文件。它是一种封装了一组功能的可执行文件，可以被多个应用程序共享和使用。</p>
 <p>动态库的作用是让程序可以在运行时使用它所提供的功能。在编写程序时，可以通过调用动态库中的函数来使用它所提供的功能。动态库会在程序运行时加载到内存中，并为程序提供服务。这样，程序就可以在运行时使用动态库中的函数，而无需将这些函数编译到程序中。</p>
 <p>动态库中包含了一组功能的函数，这些函数可以被程序调用。动态库还可以包含常量、变量和数据结构等内容。这些内容可以被程序使用，以实现更多的功能。</p>
 <p>动态库的好处在于，它可以被多个应用程序共享和使用。这样，如果一个应用程序需要使用某个动态库的功能，可以直接调用这个动态库中的函数，而无需将这些函数编译到程序中。这样可以节省空间，提高程序的运行效率。</p>
@@ -224,235 +229,33 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ windows.cpp -o windows -mwindows <span class="comment">//c就用gcc</span></span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/c-c/" rel="tag"># c/c++</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/27/RK%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Green">
-      <meta itemprop="description" content="一位AI专业本科生">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Greenland">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/27/RK%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/" class="post-title-link" itemprop="url">RK算法与字符串哈希</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-12-27 13:56:27 / 修改时间：14:40:05" itemprop="dateCreated datePublished" datetime="2022-12-27T13:56:27+08:00">2022-12-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="RK算法"><a href="#RK算法" class="headerlink" title="RK算法"></a>RK算法</h3><p>RK算法全名Rabin-Karp算法，是由Rabin和Karp提出的字符串匹配算法，该算法的原理是将字符串匹配问题转化为整数比较问题，例如在我们比较’abcbc’与’abc’时，我们可以运用霍纳法则，以3为一个单位，将对应长度的字符串表示为一个十进制整数，当两个整数相等时，说明匹配成功。但实际使用时会产生许多问题，例如随着字符串的长度增加导致整数的大小溢出，同时转化的复杂度也会提升，为此可以采用取模的方法规避这一问题，但实际上取模的副作用就是产生一些错误匹配，也被称为伪命中点，即这些字符串转化为十进制整数后，虽然两个整数大小是不相等的，然而取模之后大小相等，结果就是也被认作是匹配的。</p>
-<h3 id="字符串哈希"><a href="#字符串哈希" class="headerlink" title="字符串哈希"></a>字符串哈希</h3><p>字符串哈希算法与RK算法类似，或者说是RK算法的拓展，也是把字符串映射到整数的方法，而在这个映射函数中我们不一定使用霍纳法则，这个函数也被称作Hash（哈希）函数。</p>
-<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><p>具体来说，哈希函数最重要的性质可以概括为下面两条：</p>
-<ol>
-<li>在 Hash 函数值不一样的时候，两个字符串一定不一样；</li>
-<li>在 Hash 函数值一样的时候，两个字符串不一定一样（但有大概率一样，且我们当然希望它们总是一样的）。</li>
-</ol>
-<p>Hash 函数值一样时原字符串却不一样的现象我们称为哈希碰撞。</p>
-<h4 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h4><p>在霍纳法则中我们使用的是以10为基数，但实际上我们可以自由选择这个基数，只要合适。对于取模的数m，我们最好选择素数。通过哈希函数f，我们得到的是一个字符串lenth-1阶的多项式，若文本串t和模式串s在x&#x3D;b的时候哈希碰撞，则b是f的一个根，即当x&#x3D;b时，哈希函数所对应的值是相等的，而为了使哈希函数所得到的值域尽可能大，这与m有关，显然当m是素数的时候是最优的，f的根最多有lenth-1个，而b是从0到m中均匀选取，则最终发生哈希碰撞的概率是(lenth-1)&#x2F;m，借助这个概率也可以帮助我们选择更优的基数与m。</p>
-<h4 id="最简单的实现"><a href="#最简单的实现" class="headerlink" title="最简单的实现"></a>最简单的实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#python</span></span><br><span class="line">M = <span class="built_in">int</span>(<span class="number">1e9</span> + <span class="number">7</span>)</span><br><span class="line">B = <span class="number">233</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_hash</span>(<span class="params">s</span>):</span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> char <span class="keyword">in</span> s:</span><br><span class="line">        res = (res * B + <span class="built_in">ord</span>(char)) % M</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">       ord() function is a library function in Python, it is used to get number value from given character value, it accepts a character and returns an integer i.e. it is used to convert a character to an integer i.e. it is used to get the ASCII value of a given character.</span></span><br><span class="line"><span class="string">       &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cmp</span>(<span class="params">s, t</span>):</span><br><span class="line">    <span class="keyword">return</span> get_hash(s) == get_hash(t)</span><br></pre></td></tr></table></figure>
-
-<p>对于RK算法与字符串哈希而言，在时间复杂度上并不优于自动机与KMP算法之类，但是却给我们提供一种思路：映射。同时，字符串哈希同样可以进行不断的优化和调整，变得更加实用。</p>
-
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/27/RK%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/" rel="prev" title="RK算法与字符串哈希">
+      <i class="fa fa-chevron-left"></i> RK算法与字符串哈希
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/27/%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E7%B2%98%E5%90%88%E5%89%82%EF%BC%9A-%E8%BF%90%E7%AE%97%E7%AC%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Green">
-      <meta itemprop="description" content="一位AI专业本科生">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Greenland">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/27/%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E7%B2%98%E5%90%88%E5%89%82%EF%BC%9A-%E8%BF%90%E7%AE%97%E7%AC%A6/" class="post-title-link" itemprop="url">预处理器粘合剂：##运算符</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-12-27 13:16:46 / 修改时间：13:39:42" itemprop="dateCreated datePublished" datetime="2022-12-27T13:16:46+08:00">2022-12-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在介绍##运算符之前，我们需要先了解一下#运算符，在我们的程序中经常会使用#define语句定义函数宏，例如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PSQR(x) printf(<span class="string">&quot;the square of &quot;</span> #x <span class="string">&quot; is %d.\n&quot;</span>,((x)*(x)));</span></span><br></pre></td></tr></table></figure>
-
-<p>在这行代码中#x的作用突显了出来，它可以指代函数宏中的’x’，倘若没有#x，而直接用：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PSQR(x) printf(<span class="string">&quot;the square of x is %d.\n&quot;</span>,((x)*(x)));</span></span><br></pre></td></tr></table></figure>
-
-<p>导致的结果就是printf语句中的x表示的是一个字符，而不是参数x的指代。</p>
-<p>与#运算符类似，##运算符可用于函数宏的替换部分，那##运算符为何被称作黏合剂？请参考如下代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> NAME(n) x ## n;</span></span><br></pre></td></tr></table></figure>
-
-<p>在这行代码中，宏NAME(4)将展开为x4。</p>
-<p>在更复杂的代码中，如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define PRINT_XN(n) printf(&quot;x&quot; #n &quot; =%d\n&quot;,x ## n);</span><br></pre></td></tr></table></figure>
-
-<p>在这行代码中，通过我们改变n来输出xn与xn的值的对应关系，通过对#和##运算符的运用为我们的代码提供了便利。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/26/test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Green">
-      <meta itemprop="description" content="一位AI专业本科生">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Greenland">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/26/test/" class="post-title-link" itemprop="url">解决HEXO无法显示图片的方案</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-12-26 20:53:03 / 修改时间：21:39:59" itemprop="dateCreated datePublished" datetime="2022-12-26T20:53:03+08:00">2022-12-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>​		在使用Hexo搭建博客时会产生在markdown中引入图片在网页部署后无法显示的问题，即使将markdown文件中将图片的绝对路径改为相对路径也无济于事，因为在将博客上传后这些路径都会失效，除非直接将图片上传至github。</p>
-<p>​		同时，图片的存放也存在问题，当博客数量增加后，图片的数量也会增加，如果不合理安排图片的存放路径会导致资源的杂乱无章。</p>
-<p>​		为此，在此提出作者的解决方案。首先，在根目录下的’_config.yml’文件中找到’post_asset_folder’，并将</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: false</span><br></pre></td></tr></table></figure>
-
-<p>改为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>
-
-<p>​		其意义是在创建md文件时为此md文件创建一个同名文件夹，我们可以在此文件夹下保存我们博客中需要的图片。然后，为了使我们在markdown文件中可以用正确的语法插入图片，我们需要下载nodejs模块：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
-
-<p>​		然后我们就可以愉快地插入图片啦~</p>
-<p><img src="/2022/12/26/test/1.png" alt="1.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -505,6 +308,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">动态库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6%E4%B8%8E%E5%8A%A8%E6%80%81%E5%BA%93%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">2.</span> <span class="nav-text">头文件与动态库的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%82%A3%E5%9C%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E8%B0%83%E7%94%A8windows-h%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E5%80%99%E5%B9%B6%E4%B8%8D%E4%BC%9A%E8%87%AA%E5%8A%A8%E5%BC%95%E5%85%A5gdi32-dll%EF%BC%8C%E8%80%8C%E6%98%AF%E9%9C%80%E8%A6%81%E6%89%8B%E5%8A%A8%E5%9C%B0%E5%8E%BB%E9%93%BE%E6%8E%A5%E8%BF%99%E4%B8%AA%E5%BA%93%E5%90%97%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">那在程序中调用windows.h头文件的时候并不会自动引入gdi32.dll，而是需要手动地去链接这个库吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%80%E4%BB%A5%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87pragma%E6%9D%A5%E9%93%BE%E6%8E%A5%E8%BF%99%E4%BA%9B%E5%BA%93%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">所以可以通过pragma来链接这些库？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mingw-W64%E7%BC%96%E8%AF%91Windows%E7%A8%8B%E5%BA%8F%E6%8F%90%E7%A4%BA%EF%BC%9Aundefined-reference-to-96-imp-GetStockObject%E2%80%99-%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">Mingw-W64编译Windows程序提示：undefined reference to &#96;__imp_GetStockObject’ 的解决方法</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
