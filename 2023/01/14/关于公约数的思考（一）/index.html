@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/plam-tree-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/palm-tree-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="起因：leetcode1819. 序列中不同最大公约数的数目 给你一个由正整数组成的数组 nums 。 数字序列的 最大公约数 定义为序列中所有整数的共有约数中的最大整数。  例如，序列 [4,6,16] 的最大公约数是 2 。  数组的一个 子序列 本质是一个序列，可以通过删除数组中的某些元素（或者不删除）得到。  例如，[2,5,10] 是 [1,2,1,**2**,4,1,**5**,**1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于公约数的思考（一）">
+<meta property="og:url" content="http://example.com/2023/01/14/%E5%85%B3%E4%BA%8E%E5%85%AC%E7%BA%A6%E6%95%B0%E7%9A%84%E6%80%9D%E8%80%83%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="Greenland">
+<meta property="og:description" content="起因：leetcode1819. 序列中不同最大公约数的数目 给你一个由正整数组成的数组 nums 。 数字序列的 最大公约数 定义为序列中所有整数的共有约数中的最大整数。  例如，序列 [4,6,16] 的最大公约数是 2 。  数组的一个 子序列 本质是一个序列，可以通过删除数组中的某些元素（或者不删除）得到。  例如，[2,5,10] 是 [1,2,1,**2**,4,1,**5**,**1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/01/14/%E5%85%B3%E4%BA%8E%E5%85%AC%E7%BA%A6%E6%95%B0%E7%9A%84%E6%80%9D%E8%80%83%EF%BC%88%E4%B8%80%EF%BC%89/QQ%E5%9B%BE%E7%89%8720230114163952.png">
+<meta property="article:published_time" content="2023-01-14T08:31:40.000Z">
+<meta property="article:modified_time" content="2023-01-14T10:35:14.094Z">
+<meta property="article:author" content="Green">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/01/14/%E5%85%B3%E4%BA%8E%E5%85%AC%E7%BA%A6%E6%95%B0%E7%9A%84%E6%80%9D%E8%80%83%EF%BC%88%E4%B8%80%EF%BC%89/QQ%E5%9B%BE%E7%89%8720230114163952.png">
+
+<link rel="canonical" href="http://example.com/2023/01/14/%E5%85%B3%E4%BA%8E%E5%85%AC%E7%BA%A6%E6%95%B0%E7%9A%84%E6%80%9D%E8%80%83%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>关于公约数的思考（一） | Greenland</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Greenland</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/01/14/%E5%85%B3%E4%BA%8E%E5%85%AC%E7%BA%A6%E6%95%B0%E7%9A%84%E6%80%9D%E8%80%83%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Green">
+      <meta itemprop="description" content="一位AI专业本科生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Greenland">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于公约数的思考（一）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-01-14 16:31:40 / 修改时间：18:35:14" itemprop="dateCreated datePublished" datetime="2023-01-14T16:31:40+08:00">2023-01-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="起因："><a href="#起因：" class="headerlink" title="起因："></a>起因：</h3><p><strong>leetcode1819. 序列中不同最大公约数的数目</strong></p>
+<p>给你一个由正整数组成的数组 <code>nums</code> 。</p>
+<p>数字序列的 <strong>最大公约数</strong> 定义为序列中所有整数的共有约数中的最大整数。</p>
+<ul>
+<li>例如，序列 <code>[4,6,16]</code> 的最大公约数是 <code>2</code> 。</li>
+</ul>
+<p>数组的一个 <strong>子序列</strong> 本质是一个序列，可以通过删除数组中的某些元素（或者不删除）得到。</p>
+<ul>
+<li>例如，<code>[2,5,10]</code> 是 <code>[1,2,1,**2**,4,1,**5**,**10**]</code> 的一个子序列。</li>
+</ul>
+<p>计算并返回 <code>nums</code> 的所有 <strong>非空</strong> 子序列中 <strong>不同</strong> 最大公约数的 <strong>数目</strong> 。</p>
+<hr>
+<p>关于这道题，我知道对于每个子序列依次去求他们的最大公约数十分繁琐，因此我先把主序列中的重复元素全部删除，只保留一个，然后先用unordered_set来存储每个单个元素，然后再去存储这个序列中两两配对之后所取得的公约数，我写的代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countDifferentSubsequenceGCDs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        unordered_set&lt;<span class="type">int</span>&gt; s,n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> i:nums)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!n.<span class="built_in">count</span>(i))&#123;</span><br><span class="line">                n.<span class="built_in">insert</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        s=n;</span><br><span class="line">        <span class="keyword">while</span>(!n.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            <span class="keyword">auto</span> i=n.<span class="built_in">begin</span>();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> j:n)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!s.<span class="built_in">count</span>(<span class="built_in">gcd</span>(*i,j)))&#123;</span><br><span class="line">                    s.<span class="built_in">insert</span>(<span class="built_in">gcd</span>(*i,j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            n.<span class="built_in">erase</span>(*i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.<span class="built_in">size</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h3><p>在运行测试用例全部通过后我提交了，然而发现在通过大部分样例之后突然有一个样例失败了，而且输出的答案比预期的答案少一个。</p>
+<p><img src="/2023/01/14/%E5%85%B3%E4%BA%8E%E5%85%AC%E7%BA%A6%E6%95%B0%E7%9A%84%E6%80%9D%E8%80%83%EF%BC%88%E4%B8%80%EF%BC%89/QQ%E5%9B%BE%E7%89%8720230114163952.png" alt="QQ图片20230114163952"></p>
+<p>然后我才意识到求三个数的最大公约数，这个公约数未必属于这三个数两两配对之后所得到的三个最大公约数所组成的集合，所以我最终输出的结果会有遗漏（刚好被我应付了绝大部分的测试样例），我起初并无法想明白为什么，直到我找到了一个反例：</p>
+<p>例如三个数分别为：84、78、182（能被我找到这反例还真不容易），他们因式分解之后分别可以表示成3×2×2×7、3×2×13、2×13×7，从中不难看出两两配对之后的最大公约数分别为6、26、14，而最终三个数的最大公约数为2。进一步也可以看出满足三个数的最大公约数不属于这三个数两两配对之后所得到的三个最大公约数所组成的集合的前提是这三个数每个数在因式分解后都缺少一个或者多个另外两个数所共有的数，在上面那个反例中这三个所缺少的那个因数分别是13、7、3。最终这三个数的最大公约数小于任何两个数的最大公约数。</p>
+<h3 id="改进一"><a href="#改进一" class="headerlink" title="改进一"></a>改进一</h3><p>为了能进一步解决上述的错误，我的想法是在得到最初那个unordered_set对象之后，由于其中都是得到了公约数的值，所以我打算将这些公约数再与序列进行求公约数的操作：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countDifferentSubsequenceGCDs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        unordered_set&lt;<span class="type">int</span>&gt; s,n,t;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> i:nums)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!n.<span class="built_in">count</span>(i))&#123;</span><br><span class="line">                n.<span class="built_in">insert</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        s=n;t=n;</span><br><span class="line">        <span class="keyword">while</span>(!n.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            <span class="keyword">auto</span> i=n.<span class="built_in">begin</span>();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> j:n)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!s.<span class="built_in">count</span>(<span class="built_in">gcd</span>(*i,j)))&#123;</span><br><span class="line">                    s.<span class="built_in">insert</span>(<span class="built_in">gcd</span>(*i,j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            n.<span class="built_in">erase</span>(*i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> i:s)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> j:t)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!s.<span class="built_in">count</span>(<span class="built_in">gcd</span>(i,j)))&#123;</span><br><span class="line">                    s.<span class="built_in">insert</span>(<span class="built_in">gcd</span>(i,j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.<span class="built_in">size</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h3><p>这次我们提交之后没有上述的错误，然后问题出现在了运行时间上面，这次超时了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countDifferentSubsequenceGCDs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> maxn=<span class="number">0</span>,gcdl,key=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> i:nums)&#123;</span><br><span class="line">            maxn=<span class="built_in">max</span>(maxn,i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=maxn;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> j:nums)&#123;</span><br><span class="line">                <span class="keyword">if</span>(j%i==<span class="number">0</span>&amp;&amp;gcdl)&#123;</span><br><span class="line">                    gcdl=<span class="built_in">gcd</span>(gcdl,j);</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(j%i==<span class="number">0</span>&amp;&amp;!gcdl)&#123;</span><br><span class="line">                    gcdl=j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(gcdl==i)key+=<span class="number">1</span>;</span><br><span class="line">            gcdl=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>换了一种解法，由于序列中的值不大同时，最大公约数的大小不可能大于序列中最大的值，所以根据枚举公约数来寻找答案，可同样超时。</p>
+<h3 id="改进二"><a href="#改进二" class="headerlink" title="改进二"></a>改进二</h3><p>为了进行优化，所以必须从<code>auto j:nums</code>入手，这一步是为了找出序列中所有因数为i的数，找到这些数后，如果这些数的最大公约数是i，就说明i是最大公约数之一，如果一个个遍历会因为序列太大而耗时，所以使用<code>vector&lt;bool&gt;</code>对象，直接查找序列中是否存在i的倍数。最终通过的代码实现如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countDifferentSubsequenceGCDs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> maxn=<span class="number">0</span>,gcdl,key=<span class="number">0</span>;</span><br><span class="line">        maxn=*<span class="built_in">max_element</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">occured</span><span class="params">(maxn+<span class="number">1</span>, <span class="literal">false</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : nums) &#123;</span><br><span class="line">            occured[num] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=maxn;i++)&#123;</span><br><span class="line">            gcdl=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i; j &lt;= maxn; j += i) &#123;</span><br><span class="line">                <span class="keyword">if</span> (occured[j]) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (gcdl == <span class="number">0</span>) &#123;</span><br><span class="line">                        gcdl = j;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        gcdl = <span class="built_in">gcd</span>(gcdl, j);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (gcdl == i) &#123;</span><br><span class="line">                        key++;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/01/06/%E7%AC%94%E8%AE%B0/" rel="prev" title="windows api笔记">
+      <i class="fa fa-chevron-left"></i> windows api笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/10/05/colorful/" rel="next" title="123">
+      123 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%B7%E5%9B%A0%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">起因：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%B8%80"><span class="nav-number">2.</span> <span class="nav-text">问题一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E8%BF%9B%E4%B8%80"><span class="nav-number">3.</span> <span class="nav-text">改进一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%BA%8C"><span class="nav-number">4.</span> <span class="nav-text">问题二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E8%BF%9B%E4%BA%8C"><span class="nav-number">5.</span> <span class="nav-text">改进二</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Green"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Green</p>
+  <div class="site-description" itemprop="description">一位AI专业本科生</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Green110666" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Green110666" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Thewho110666@gmail.com" title="E-Mail → mailto:Thewho110666@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-12 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Green</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
