@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-  <!-- 元数据 -->
-  <meta charset="utf-8">
-  <link rel="icon" href="https://ga.candinya.com/avatar/a7f9e15fef26e0a540edc977e21cb3eb">
-  
-  <title>解决HEXO无法显示图片的方案 | Greenland</title>
-  
-  <meta name="author" content="Green" />
-  <meta http-equiv="Cache-Control" content="no-transform" />
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="robots" content="index,follow" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <meta name="format-detection" content="telphone=no, email=no" />
-  
-    <meta name="keywords" content="blog" />
-  
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/plam-tree-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/palm-tree-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
   <meta name="description" content="​		在使用Hexo搭建博客时会产生在markdown中引入图片在网页部署后无法显示的问题，即使将markdown文件中将图片的绝对路径改为相对路径也无济于事，因为在将博客上传后这些路径都会失效，除非直接将图片上传至github。 ​		同时，图片的存放也存在问题，当博客数量增加后，图片的数量也会增加，如果不合理安排图片的存放路径会导致资源的杂乱无章。 ​		为此，在此提出作者的解决方案。首先，在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决HEXO无法显示图片的方案">
@@ -24,207 +27,181 @@
 <meta property="og:site_name" content="Greenland">
 <meta property="og:description" content="​		在使用Hexo搭建博客时会产生在markdown中引入图片在网页部署后无法显示的问题，即使将markdown文件中将图片的绝对路径改为相对路径也无济于事，因为在将博客上传后这些路径都会失效，除非直接将图片上传至github。 ​		同时，图片的存放也存在问题，当博客数量增加后，图片的数量也会增加，如果不合理安排图片的存放路径会导致资源的杂乱无章。 ​		为此，在此提出作者的解决方案。首先，在">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ga.candinya.com/avatar/a7f9e15fef26e0a540edc977e21cb3eb">
+<meta property="og:image" content="http://example.com/2022/12/26/test/1.png">
 <meta property="article:published_time" content="2022-12-26T12:53:03.000Z">
 <meta property="article:modified_time" content="2022-12-26T13:39:59.126Z">
 <meta property="article:author" content="Green">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ga.candinya.com/avatar/a7f9e15fef26e0a540edc977e21cb3eb">
+<meta name="twitter:image" content="http://example.com/2022/12/26/test/1.png">
+
+<link rel="canonical" href="http://example.com/2022/12/26/test/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>解决HEXO无法显示图片的方案 | Greenland</title>
   
-  <!-- 站点验证相关 -->
-  
-    
-    
-    
-  
-  <!-- 样式表文件 -->
-  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
-  
-    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
-    <script src="/js/kr-dark.min.js"></script>
-  
-  
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
-  
-  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
-  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
-  
-  
-    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
-  
-  
-    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
-  
-  <!-- 不得不预先加载的一些JS文件 -->
-  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
-  
-    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
-  
-  
+
+
+
+
+
+
+  <noscript>
   <style>
-    
-    
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
-  
-<meta name="generator" content="Hexo 6.3.0"></head>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Greenland</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
 
 
-    <body class="custom-background">
-        <div id="kratos-wrapper">
-    <div id="kratos-page">
-        <div id="kratos-header">
-            <header id="kratos-desktop-topnav" class="kratos-topnav">
-                <div class="container">
-                    <div class="nav-header">
-                        <nav id="kratos-menu-wrap">
-                            <ul id="kratos-primary-menu" class="sf-menu">
-                                
-                                    
-                                        <li>
-                                            
-                                                <a href="/">
-                                            
-                                                
-                                                    <i class="fa fa-home"></i>
-                                                
-                                                首页
-                                            </a>
-                                            
-                                        </li>
-                                    
-                                        <li>
-                                            
-                                                <a href="/archives/">
-                                            
-                                                
-                                                    <i class="fa fa-file"></i>
-                                                
-                                                档案馆
-                                            </a>
-                                            
-                                        </li>
-                                    
-                                        <li>
-                                            
-                                                <a href="/friends/">
-                                            
-                                                
-                                                    <i class="fa fa-paw"></i>
-                                                
-                                                好伙伴
-                                            </a>
-                                            
-                                        </li>
-                                    
-                                        <li>
-                                            
-                                                <a>
-                                            
-                                                
-                                                    <i class="fa fa-link"></i>
-                                                
-                                                链接
-                                            </a>
-                                            
-                                                <ul class="sub-menu">
-                                                    
-                                                        <li>
-                                                            <a target="_blank" rel="noopener" href="https://candinya.com">
-                                                                
-                                                                作者博客
-                                                            </a>
-                                                        </li>
-                                                    
-                                                        <li>
-                                                            <a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">
-                                                                
-                                                                项目链接
-                                                            </a>
-                                                        </li>
-                                                    
-                                                </ul>
-                                            
-                                        </li>
-                                    
-                                
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </header>
-            <header id="kratos-mobile-topnav" class="kratos-topnav">
-                <div class="container">
-                    <div class="color-logo"><a href="/">Greenland</a></div>
-                    <div class="nav-toggle">
-                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
-                            <i></i>
-                        </a>
-                    </div>
-                </div>
-            </header>
-        </div>
-        <div class="kratos-start kratos-hero-2">
-            <!-- <div class="kratos-overlay"></div> -->
-            <div class="kratos-cover kratos-cover-2 text-center">
-                <div class="desc desc2 animate-box">
-                    <a href="/">
-                        <h2>Greenland</h2> <br />
-                        <span></span>
-                    </a>
-                </div>
-            </div>
-        </div>
 
-        <div id="kratos-blog-post">
-            <div class="container">
-                <div id="main" class="row">
-                    
 
-        
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
 
-            <section class="col-md-8">
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
-        
+  </li>
+        <li class="menu-item menu-item-tags">
 
-            <article itemscope itemtype="https://schema.org/Article">
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/26/test/">
-    <div class="kratos-hentry kratos-post-inner clearfix">
-        <header class="kratos-entry-header">
-            
-                <h1 class="kratos-entry-title text-center" itemprop="name headline">解决HEXO无法显示图片的方案</h1>
-            
-            
-            <ul class="kratos-post-meta text-center">
-                <li><time datetime="2022-12-26T12:53:03.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-12-26</time></li>
-                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
-                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Green</span>
-                </li>
-                
-                    <li>
-                        <i class="fa fa-edit"></i> 
-                        
-                        
-                            496
-                        
-                        字
-                    </li>
-                
-                
-            </ul>
-        </header>
-        <div class="kratos-post-content">
-            
-            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1672061999126"></time> 前，其中的内容可能需要更新。</p></div>
-            </div>
-            
-            
-            
-            <hr />
-            <div itemprop="articleBody"><p>​		在使用Hexo搭建博客时会产生在markdown中引入图片在网页部署后无法显示的问题，即使将markdown文件中将图片的绝对路径改为相对路径也无济于事，因为在将博客上传后这些路径都会失效，除非直接将图片上传至github。</p>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Green">
+      <meta itemprop="description" content="探索永无止境">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Greenland">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          解决HEXO无法显示图片的方案
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-26 20:53:03 / 修改时间：21:39:59" itemprop="dateCreated datePublished" datetime="2022-12-26T20:53:03+08:00">2022-12-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>​		在使用Hexo搭建博客时会产生在markdown中引入图片在网页部署后无法显示的问题，即使将markdown文件中将图片的绝对路径改为相对路径也无济于事，因为在将博客上传后这些路径都会失效，除非直接将图片上传至github。</p>
 <p>​		同时，图片的存放也存在问题，当博客数量增加后，图片的数量也会增加，如果不合理安排图片的存放路径会导致资源的杂乱无章。</p>
 <p>​		为此，在此提出作者的解决方案。首先，在根目录下的’_config.yml’文件中找到’post_asset_folder’，并将</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: false</span><br></pre></td></tr></table></figure>
@@ -237,386 +214,202 @@
 
 <p>​		然后我们就可以愉快地插入图片啦~</p>
 <p><img src="/2022/12/26/test/1.png" alt="1.png"></p>
-</div>
-        </div>
-        
-            <div class="kratos-copyright text-center clearfix">
-                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
-            </div>
-        
-        <footer class="kratos-entry-footer clearfix">
-            
-                <div class="post-like-donate text-center clearfix" id="post-like-donate">
-                
-                
-                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
-                    <div class="share-wrap" style="display: none;">
-    <div class="share-group">
-        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
-            <div class="icon-wrap">
-                <i class="fa fa-qq"></i>
-            </div>
-        </a>
-        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
-            <div class="icon-wrap">
-                <i class="fa fa-star"></i>
-            </div>
-        </a>
-        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
-            <div class="icon-wrap">
-                <i class="fa fa-weixin"></i>
-            </div>
-            <div class="share-int">
-                <div class="qrcode" id="wechat-qr"></div>
-                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
-            </div>
-        </a>
-        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
-            <div class="icon-wrap">
-                <i class="fa fa-weibo"></i>
-            </div>
-        </a>
-        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
-            <div class="icon-wrap">
-                <i class="fa fa-facebook"></i>
-            </div>
-        </a>
-        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
-            <div class="icon-wrap">
-                <i class="fa fa-twitter"></i>
-            </div>
-        </a>
+
     </div>
-    <script type="text/javascript">
-        $(()=>{
-            new QRCode("wechat-qr", {
-                text: "http://example.com/2022/12/26/test/",
-                width: 150,
-                height: 150,
-                correctLevel : QRCode.CorrectLevel.H
-            });
-        });
-        function share(dest) {
-            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
-            const weiboBase     = "https://service.weibo.com/share/share.php?";
-            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
-            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
-            const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "http://example.com/2022/12/26/test/";
-            const title         = "「解决HEXO无法显示图片的方案」";
-            const excerpt       = `​		在使用Hexo搭建博客时会产生在markdown中引入图片在网页部署后无法显示的问题，即使将markdown文件中将图片的绝对路径改为相对路径也无济于事，因为在将博客上传后这些路径都会失效，除非直接将图片上传至github。
-​...`;
-            let _URL;
-            switch (dest) {
-                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
-                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
-                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
-                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
-                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
-            }
-            window.open(_URL);
-        };
-    </script>
-</div>
-                
-                </div>
-            
-            <div class="footer-tag clearfix">
-                <div class="pull-left">
-                <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/blog/" rel="tag">blog</a>
-                </div>
-                <div class="pull-date">
-                    <time datetime="2022-12-26T13:39:59.126Z" itemprop="dateModified">最后编辑：2022-12-26</time>
-                </div>
-            </div>
-        </footer>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/blog/" rel="tag"># blog</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/27/%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E7%B2%98%E5%90%88%E5%89%82%EF%BC%9A-%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="next" title="预处理器粘合剂：##运算符">
+      预处理器粘合剂：##运算符 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
+      </footer>
     
-        <nav class="navigation post-navigation clearfix" role="navigation">
-            
-            
-            <div class="nav-next clearfix">
-                <a title=" 预处理器粘合剂：##运算符" href="/2022/12/27/预处理器粘合剂：-运算符/">下一篇 &gt;</a>
-            </div>
-            
-        </nav>
-    
-    
-        <link rel="stylesheet" href="/vendors/gitalk@1.7.2/dist/gitalk.css"></script>
-<div id="gitalk-container" class="post-comments lazy-load" style="padding-left:2rem; padding-right:2rem;"></div>
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
 <script>
-    var load_comm = () => {
-        const init = () => {
-            console.log('Gitalk loading...');
-            const gitalk = new Gitalk(Object.assign({
-                id: '/2022/12/26/test/',
-                path: '/2022/12/26/test/'
-            }, JSON.parse('{"clientID":"GitHub Application Client ID","clientSecret":"GitHub Application Client Secret","repo":"Kratos-Rebirth-Demo","owner":"Candinya","admin":["Candinya"],"distractionFreeMode":false}')));
-
-            gitalk.render('gitalk-container');
-        }
-        if (typeof Gitalk === 'undefined') {
-            const src = '/vendors/gitalk@1.7.2/dist/gitalk.min.js';
-            $.getScript(src, init);
-        } else {
-            init();
-        }
-    };
-</script>
-<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk">comments powered by Gitalk.</a></noscript>
-    
-</article>
-
-        
-
-            </section>
-
-        
-
-                
-            
-
-<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
-    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
-    
-    
-                <aside id="krw-about" class="widget widget-kratos-about clearfix">
-    <div class="photo-background"></div>
-    <div class="photo-wrapper clearfix">
-        <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="https://ga.candinya.com/avatar/a7f9e15fef26e0a540edc977e21cb3eb" loading="lazy" decoding="auto" />
-        </div>
-    </div>
-    <div class="textwidget">
-        <p class="text-center">探索永无止境</p>
-    </div>
-    <div class="site-meta">
-        <a class="meta-item" href="/archives/">
-            <span class="title">
-                文章
-            </span>
-            <span class="count">
-                6
-            </span>
-        </a>
-        <a class="meta-item" href="/categories/">
-            <span class="title">
-                分类
-            </span>
-            <span class="count">
-                0
-            </span>
-        </a>
-        <a class="meta-item" href="/tags/">
-            <span class="title">
-                标签
-            </span>
-            <span class="count">
-                3
-            </span>
-        </a>
-    </div>
-</aside>
-            
-                    <div class="sticky-area">
-                
-                
-
-            
-                
-  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
-    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
-      <div class="tag-clouds">
-        <a href="/tags/blog/" style="font-size: 0.6em;">blog</a> <a href="/tags/c-c/" style="font-size: 0.8em;">c/c++</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 0.8em;">算法</a>
-      </div>
-  </aside>
-
-            
-                
-  <aside id="krw-posts" class="widget widget-kratos-posts">
-  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
-  <div class="tab-content">
-      <ul class="list-group">
-        
-        
-          
-          
-            <a class="list-group-item" href="/2023/10/05/colorful/"><i class="fa  fa-book"></i> 123</a>
-            
-          
-        
-          
-          
-            <a class="list-group-item" href="/2023/01/14/%E5%85%B3%E4%BA%8E%E5%85%AC%E7%BA%A6%E6%95%B0%E7%9A%84%E6%80%9D%E8%80%83%EF%BC%88%E4%B8%80%EF%BC%89/"><i class="fa  fa-book"></i> 关于公约数的思考（一）</a>
-            
-          
-        
-          
-          
-            <a class="list-group-item" href="/2023/01/06/%E7%AC%94%E8%AE%B0/"><i class="fa  fa-book"></i> windows api笔记</a>
-            
-          
-        
-          
-          
-            <a class="list-group-item" href="/2022/12/27/RK%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/"><i class="fa  fa-book"></i> RK算法与字符串哈希</a>
-            
-          
-        
-          
-          
-            <a class="list-group-item" href="/2022/12/27/%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E7%B2%98%E5%90%88%E5%89%82%EF%BC%9A-%E8%BF%90%E7%AE%97%E7%AC%A6/"><i class="fa  fa-book"></i> 预处理器粘合剂：##运算符</a>
-            
-          
-        
-          
-            
-      </ul>
-  </div>
-  </aside>
-
-            
-    </div>
-</section>
-        
-        </div>
-    </div>
-</div>
-<footer>
-    <div id="footer"  class="ap-lrc"  >
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 footer-list text-center">
-                    <ul class="kratos-social-icons">
-                        <!-- Keep for compatibility -->
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <!-- New links -->
-                        
-                            <li>
-                                <a target="_blank" rel="nofollow" href="https://github.com/Candinya">
-                                    
-                                        <i class="fa fa-github"></i>
-                                    
-                                </a>
-                            </li>
-                        
-                            <li>
-                                <a target="_blank" rel="nofollow" href="https://nya.one/@Candinya">
-                                    
-                                        <svg fill="currentColor" viewBox="0 0 1024 1024"><path d="M512,0C794.58,0 1024,229.42 1024,512C1024,794.58 794.58,1024 512,1024C229.42,1024 0,794.58 0,512C0,229.42 229.42,0 512,0ZM292.789,304.042L292.789,723.567C292.789,750.225 314.432,771.868 341.091,771.868C367.749,771.868 389.393,750.225 389.393,723.567L389.393,440.596L641.699,748.461C650.156,762.483 665.536,771.868 683.091,771.868C709.749,771.868 731.393,750.225 731.393,723.567L731.393,304.042C731.393,277.384 709.749,255.74 683.091,255.74C664.98,255.74 649.184,265.729 640.916,280.494L565.431,372.601L565.452,372.618C558.836,380.884 554.877,391.367 554.877,402.768C554.877,429.426 576.521,451.07 603.179,451.07C615.262,451.07 626.315,446.624 634.789,439.28L634.789,587.625L383.634,281.165C375.473,266.033 359.474,255.74 341.091,255.74C314.432,255.74 292.789,277.384 292.789,304.042Z" /></svg>
-                                    
-                                </a>
-                            </li>
-                        
-                            <li>
-                                <a target="_blank" rel="nofollow" href="/atom.xml">
-                                    
-                                        <i class="fa fa-rss"></i>
-                                    
-                                </a>
-                            </li>
-                        
-                    </ul>
-                    <ul class="kratos-copyright">
-                        <div>
-                            <li>&copy; 2023 Greenland 版权所有.</li>
-                            <li>本站已运行<span id="span_dt">Loading...</span></li>
-                        </div>
-                        <div>
-                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
-                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Green.</li>
-                        </div>
-                        <div>
-                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
-                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
-                        </div>
-                        <div>
-                            
-                            
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="kr-tool text-center">
-            <div class="tool">
-                
-                    <div class="box search-box">
-                        <a href="/search/">
-                            <span class="fa fa-search"></span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="box theme-box" id="darkmode-switch">
-                        <span class="fa fa-adjust"></span>
-                    </div>
-                
-                
-                
-                    <div class="box group-box">
-                        <a href="https://matrix.to/#/#CandyUnion:nya.one" target="_blank" rel="nofollow">
-                            <span class="fa fa-users"></span>
-                        </a>
-                    </div>
-                
-            </div>
-            <div class="box gotop-box">
-                <span class="fa fa-chevron-up"></span>
-            </div>
-        </div>
-    </div>
-</footer>
-</div>
-</div>
-
-        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
-<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
-<script>
-    if (!window.kr) {
-        window.kr = {};
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
     }
-    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
-    window.kr.siteRoot = "/";
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
 </script>
 
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
 
-    <script async src="/js/candy.min.js"></script>
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Green"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Green</p>
+  <div class="site-description" itemprop="description">探索永无止境</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Green110666" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Green110666" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Thewho110666@gmail.com" title="E-Mail → mailto:Thewho110666@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
 
 
 
-    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
-    
-    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
-    <meting-js
-        server="netease"
-        type="playlist"
-        id="3204190542"
-        order="random"
-        fixed="true"
-    >
-    </meting-js>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022-12 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Green</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
 
 
 
-    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-
-<script defer src="/js/kratosr.min.js"></script>
-<script defer src="/js/pjax.min.js"></script>
 
 
 
-<!-- Extra support for third-party plguins  -->
 
 
-    </body>
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
 </html>
